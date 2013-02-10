@@ -63,11 +63,11 @@ int main (int argc, char **argv)
 
         /* build a string representation of the mac address */
         int curMacCharIndex;
-        for(curMacCharIndex = 0; curMacCharIndex < value -> len; curMacCharIndex++) {
+        for(curMacCharIndex = 0; curMacCharIndex < value->len; curMacCharIndex++) {
             if(curMacCharIndex > 0)
                 strcat(clientMacAddress, ":");
 
-            sprintf(curMacChar, "%02x", value -> value [curMacCharIndex]);
+            sprintf(curMacChar, "%02x", value->value [curMacCharIndex]);
             strcat(clientMacAddress, curMacChar);
         }        
 

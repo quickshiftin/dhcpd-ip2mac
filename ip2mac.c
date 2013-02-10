@@ -58,10 +58,10 @@ int main (int argc, char **argv)
 	status = dhcpctl_data_string_dereference(&ipaddrstring, MDL);
 	status = dhcpctl_get_value(&value, lease, "hardware-address");
 
-	/* extract the mac address from the result */
+    /* extract the mac address from the result */
 	if(status == ISC_R_SUCCESS) {
 
-		/* build a string representation of the mac address */
+        /* build a string representation of the mac address */
 		int curMacCharIndex;
 		for(curMacCharIndex = 0; curMacCharIndex < value -> len; curMacCharIndex++) {
 			if(curMacCharIndex > 0)

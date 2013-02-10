@@ -14,9 +14,9 @@ int main (int argc, char **argv)
 	dhcpctl_handle connection        = NULL;
 	dhcpctl_handle lease             = NULL;
 	struct in_addr convaddr;
-	isc_result_t status, waitstatus;		/* results of dhcpctl method calls */
-	char curMacChar[1];				        /* a single character */
-	char clientMacAddress[18] = "\0";		/* the clients mac address */
+	isc_result_t status, waitstatus;  /* results of dhcpctl method calls */
+	char curMacChar[1];               /* a single character */
+	char clientMacAddress[18] = "\0"; /* the clients mac address */
 	
 	/* make sure we have an ip to check for w/ the dhcp server
 	 * that means the first command line arg needs to be the ip addr
@@ -26,15 +26,15 @@ int main (int argc, char **argv)
 		exit(0);
 	}
 	
-	dhcpctl_initialize ();						                 /* initialize the dhcpctl library */
+	dhcpctl_initialize ();                                       /* initialize the dhcpctl library */
 	status = dhcpctl_connect(&connection, "127.0.0.1", 7911, 0); /* attempt to connect to the dhcp server on localhost */
-	if(status != ISC_R_SUCCESS) 					             /* status on connection */
+	if(status != ISC_R_SUCCESS)                                  /* status on connection */
 		exit(0);
 	
-	dhcpctl_new_object(&lease, connection, "lease");	/* create a new dhcpctl object */
-	memset(&ipaddrstring, 0, sizeof(ipaddrstring));		/* allocate memory for an ip address */
-	inet_pton(AF_INET, argv[1], &convaddr);			    /* convert the address from a string to an AF_INET representation */
-	omapi_data_string_new(&ipaddrstring, 4, MDL);		/* format for dhcpctl */
+	dhcpctl_new_object(&lease, connection, "lease"); /* create a new dhcpctl object */
+	memset(&ipaddrstring, 0, sizeof(ipaddrstring));  /* allocate memory for an ip address */
+	inet_pton(AF_INET, argv[1], &convaddr);          /* convert the address from a string to an AF_INET representation */
+	omapi_data_string_new(&ipaddrstring, 4, MDL);    /* format for dhcpctl */
 	memcpy(ipaddrstring->value, &convaddr.s_addr, 4); 
 	
 	status = dhcpctl_set_value (lease, ipaddrstring, "ip-address");
